@@ -1,0 +1,15 @@
+{
+    "manifest_version":2,
+    "name":"20-20-20 app",
+    "author":"Makarand Pundlik",
+    "version":"1.0.1",
+    "description":"A react app for 20-20-20 rule",
+    "icons":{
+      "16":"android-icon-36x36.ico",
+      "48":"android-icon-48x48.ico",
+      "128":"android-icon-144x144.ico"
+    },
+    "chrome_url_overrides":{
+      "newtab":"index.html"
+    }
+  }
