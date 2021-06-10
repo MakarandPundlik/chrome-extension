@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+import { useLocation } from "react-router-dom";
 const Timer = (props) => {
-  const [[mins, secs], setTime] = useState([20, 0]);
+  const location = useLocation();
+  const isAuthenticated = location.isAuthenticated;
+  const [[mins, secs], setTime] = useState([0, 20]);
 
   const tick = () => {
     if (mins === 0 && secs === 0) {
       props.history.push({
-        pathname: "/smalltimer",
+        pathname: "/meme",
         isAuthenticated: true,
       });
     } else if (secs === 0) setTime([mins - 1, 59]);
@@ -14,6 +16,7 @@ const Timer = (props) => {
   };
 
   useEffect(() => {
+    if (!isAuthenticated) props.history.push("/");
     const timerId = setInterval(() => tick(), 1000);
     return () => clearInterval(timerId);
   });
@@ -22,9 +25,9 @@ const Timer = (props) => {
     <div className="timerContainer">
       <div className="header">Look at object 20 feet away for 20 seconds</div>
       <div className="timer">
-        <p>{`${mins.toString().padStart(2, "0")}:${secs
+        <p>{`${secs
           .toString()
-          .padStart(2, "0")}`}</p>
+          .padStart(2, "0")}S`}</p>
       </div>
     </div>
   );
